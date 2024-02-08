@@ -17,8 +17,7 @@
     cursor: pointer;
 }
 
-
-
+/* colore bombe  */
 .my_square.defeat{
     background-color: #FF8080;
     color: white;
@@ -27,22 +26,14 @@
     pointer-events: none;
 }
 
-
-.reveal {
-    background-color: transparent;
-}
-
-
-
-
-
-
+/* quando corrette  */
 .active_square{
     background-color: #8EACCD;
     color: white;
 }
 
 
+/* dimensione griglia  */
 .my_grid{
     max-width: 1000px;
     height: 1000px;
@@ -53,11 +44,8 @@
 }
 
 
-
-
-
 /* ------------------------------------------------------------ */
-/* GRANDEZZE GRIGLIA  */
+/* GRANDEZZE DIFFICOLTA */
 
 /* per la griglia 10 x 10  */
 #grid.easy .my_square {
