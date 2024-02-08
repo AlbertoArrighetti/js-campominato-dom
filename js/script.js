@@ -1,12 +1,9 @@
-// In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati
-// - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina. 
-// Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
 
-// -----------------------------------------------------------------------------------------
-// TEST 
-
-
-
+// La partita termina quando il giocatore clicca su una bomba 
+// o quando raggiunge il numero massimo possibile di numeri consentiti 
+// (ovvero quando ha rivelato tutte le celle che non sono bombe).
+// Al termine della partita il software deve comunicare il punteggio, 
+// cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
 
 // -----------------------------------------------------------------------------------------
 
@@ -58,6 +55,9 @@ buttonElement.addEventListener("click",
 
 
 
+        // mostro in pagina le caselle azzeccate 
+        // inizializzo lo score a zero 
+        let score = 0;
 
         // genero un array 
         const bombArray = []
@@ -70,11 +70,6 @@ buttonElement.addEventListener("click",
             }
 
         }
-        console.log(bombArray);
-
-
-
-
 
         for (let i = 0; i < gridNumber; i++) {
 
@@ -85,7 +80,14 @@ buttonElement.addEventListener("click",
             // gli inserisco il numero da 1 a 100 
             newSquare.innerHTML = i + 1;
 
-                
+            if(bombArray.includes(i)){
+                // se il numero è presente gli aggiungo la classe bomb 
+                newSquare.classList.add("bomb");
+            }
+
+
+
+
             // lo inserisco nella griglia 
             gridElement.append(newSquare);
 
@@ -93,7 +95,27 @@ buttonElement.addEventListener("click",
             // al click di questa casella aggiungi o rimuovi una classe 
             newSquare.addEventListener("click",
                 function() {
-                    this.classList.add("active_square");
+                    
+                    // se è una bomba 
+                    if(this.classList.contains("bomb")){
+                        // allora aggiungo lo sfondo rosso
+                        this.classList.add("defeat");
+
+                        // blocco le azioni sulla griglia  
+                        gridElement.classList.add("grid-block");
+                    }else {
+                        
+                        // altrimenti coloro la casella 
+                        this.classList.add("active_square");
+                        // e le blocco 
+                        newSquare.classList.add("square-block")
+
+                        // aggiungo un punto 
+                        score = score + 1;
+                        
+                        document.getElementById("result").innerText = "Il tuo punteggio è: " + score;
+                        
+                    }
 
                     // in console 
                     console.log(this.innerText);

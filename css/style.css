@@ -13,7 +13,23 @@
     border: 1px solid black;
 
     background-color: #FFCF81;
+
+    cursor: pointer;
 }
+
+
+
+/* test */
+.my_square.defeat{
+    background-color: red;
+    color: white;
+}
+.grid-block, .square-block{
+    pointer-events: none;
+}
+
+
+
 
 .active_square{
     background-color: #8EACCD;
