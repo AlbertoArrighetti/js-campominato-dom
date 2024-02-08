@@ -74,6 +74,7 @@ buttonElement.addEventListener("click",
             }
             // lo inserisco nella griglia 
             gridElement.append(newSquare);
+            console.log(newSquare);
 
 
             // al click di questa casella aggiungi o rimuovi una classe 
@@ -89,15 +90,8 @@ buttonElement.addEventListener("click",
                         // scrivendo all'utente che ha perso
                         resultElement.innerText = "Hai perso, Il tuo punteggio è: " + score;
 
-                        // dopodichè mostro tutte le bombe
-                        // prelevo tutti gli elementi con classe bomb 
-                        let bombs = document.getElementsByClassName("bomb");
-
-                        // gli ciclo
-                        for (let j = 0; j < bombs.length; j++) {
-                            // per ognuno aggiungo la classe defeat 
-                            bombs[j].classList.add("defeat");
-                        }
+                        // dopodichè mostro tutte le bombe richiamando la funzione 
+                        defeatBombs();
                     }else {
                         
                         // altrimenti coloro la casella e le blocco per evitare punteggio in più
@@ -114,18 +108,18 @@ buttonElement.addEventListener("click",
                             resultElement.innerText = "Congratulazioni hai vinto";
                             gridElement.classList.add("grid-block");
 
-                            let bombs = document.getElementsByClassName("bomb");
-                            for (let j = 0; j < bombs.length; j++) {
-                            bombs[j].classList.add("defeat");
+                            // richiamo la funzione 
+                            defeatBombs();
                         }
 
-                        }
-                        
                     }
+                        
                 }
-                )       
-        }  
-    }
+                )
+        }
+                   
+    }  
+    
 )
 
 
@@ -155,5 +149,14 @@ function getRandomNumbersArray(myNumber) {
 }
 
 
-
+// funzione per mostrare le bombe 
+function defeatBombs() {
+ // prelevo tutti gli elementi con classe bomb 
+    const bombs = document.getElementsByClassName("bomb");
+    // gli ciclo
+    for (let j = 0; j < bombs.length; j++) {
+        // per ognuno aggiungo la classe defeat 
+        bombs[j].classList.add("defeat");
+    }
+}
 
