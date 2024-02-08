@@ -1,0 +1,86 @@
+.my_color{
+    background-color: #D2E0FB;
+}
+
+
+.my_square{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+
+    border: 1px solid black;
+
+    background-color: #FFCF81;
+}
+
+.active_square{
+    background-color: #8EACCD;
+    color: white;
+}
+
+
+.my_grid{
+    max-width: 1000px;
+    height: 1000px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+
+
+/* ------------------------------------------------------------ */
+/* GRANDEZZE GRIGLIA  */
+
+/* per la griglia 10 x 10  */
+#grid.easy .my_square {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+
+#grid.medium .my_square {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+#grid.hard .my_square {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+
+
+
+
+
+
+
+
+/* QUERY */
+/* imposto la grandezza in base allo schermo */
+@media screen and (max-width: 992px) {
+    .my_grid{
+        max-width: 800px;
+        height: 800px;
+        margin: 0 auto;
+    }
+}
+@media screen and (max-width: 768px) {
+    .my_grid{
+        max-width: 600px;
+        height: 600px;
+        margin: 0 auto;
+    }
+}
+@media screen and (max-width: 576px) {
+    .my_grid{
+        max-width: 400px;
+        height: 400px;
+        margin: 0 auto;
+    }
+}
