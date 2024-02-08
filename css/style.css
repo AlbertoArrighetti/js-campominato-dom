@@ -19,14 +19,20 @@
 
 
 
-/* test */
 .my_square.defeat{
-    background-color: red;
+    background-color: #FF8080;
     color: white;
 }
 .grid-block, .square-block{
     pointer-events: none;
 }
+
+
+.reveal {
+    background-color: transparent;
+}
+
+
 
 
 
