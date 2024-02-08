@@ -1,29 +1,9 @@
-// Il computer deve generare 16 numeri casuali e inserirli in un array, 
-// in base al range della difficoltà prescelta 
-// (se abbiamo scelto facile l'array conterrà numeri casuali da 1 a 100, se invece abbiamo scelto difficile l'array dovrà contenerne da 1 a 49): 
-// questi rappreseranno le posizioni delle nostre bombe
-// Attenzione: nella stessa cella può essere posizionata al massimo una bomba, perciò nell’array delle bombe non potranno esserci due numeri uguali.
-
+// In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati
+// - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina. 
+// Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
 
 // -----------------------------------------------------------------------------------------
 // TEST 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -78,31 +58,49 @@ buttonElement.addEventListener("click",
 
 
 
-            for (let i = 0; i < gridNumber; i++) {
 
-                // creo un elemento con la classe my_square
-                const newSquare = document.createElement("div");
-                newSquare.classList.add("my_square");
+        // genero un array 
+        const bombArray = []
 
-                // gli inserisco il numero da 1 a 100 
-                newSquare.innerHTML = i + 1;
+        while (bombArray.length < 16){
+            let randomNumber = Math.floor(Math.random() * gridNumber) + 1;
+
+            if (!bombArray.includes(randomNumber)) {
+                bombArray.push(randomNumber);
+            }
+
+        }
+        console.log(bombArray);
+
+
+
+
+
+        for (let i = 0; i < gridNumber; i++) {
+
+            // creo un elemento con la classe my_square
+            const newSquare = document.createElement("div");
+            newSquare.classList.add("my_square");
+
+            // gli inserisco il numero da 1 a 100 
+            newSquare.innerHTML = i + 1;
 
                 
-                // lo inserisco nella griglia 
-                gridElement.append(newSquare);
+            // lo inserisco nella griglia 
+            gridElement.append(newSquare);
 
 
-                // al click di questa casella aggiungi o rimuovi una classe 
-                newSquare.addEventListener("click",
-                    function() {
-                        this.classList.add("active_square");
+            // al click di questa casella aggiungi o rimuovi una classe 
+            newSquare.addEventListener("click",
+                function() {
+                    this.classList.add("active_square");
 
-                        // in console 
-                        console.log(this.innerText);
+                    // in console 
+                    console.log(this.innerText);
 
-                    }
+                }
                 )       
-            }  
+        }  
     }
 )
 
@@ -131,3 +129,7 @@ function getRandomNumbersArray(myNumber) {
 
     return numbersArray;
 }
+
+
+
+
