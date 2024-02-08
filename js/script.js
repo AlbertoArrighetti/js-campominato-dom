@@ -1,10 +1,4 @@
 
-// La partita termina quando il giocatore clicca su una bomba 
-// o quando raggiunge il numero massimo possibile di numeri consentiti 
-// (ovvero quando ha rivelato tutte le celle che non sono bombe).
-// Al termine della partita il software deve comunicare il punteggio, 
-// cioè il numero di volte che l’utente ha cliccato su una cella che non era una bomba.
-
 // -----------------------------------------------------------------------------------------
 
 
@@ -12,6 +6,9 @@
 const buttonElement = document.querySelector("#generateBtn");
 // prelevo la tabella 
 const gridElement = document.querySelector("#grid");
+// prelevo il risultato 
+const resultElement = document.getElementById("result");
+
 
 
 // prelevo l'elemento con le varie difficoltà
@@ -22,8 +19,9 @@ let selectedElement = document.getElementById("mySelect");
 buttonElement.addEventListener("click", 
     function(){
 
-        // ogni volta che si preme il btn si elimina la griglia precedente
+        // ogni volta che si preme il btn si elimina la griglia precedente e il punteggio 
         gridElement.innerHTML = "";
+        resultElement.innerText = "";
         
         let gridNumber;
 
@@ -80,7 +78,7 @@ buttonElement.addEventListener("click",
             // gli inserisco il numero da 1 a 100 
             newSquare.innerHTML = i + 1;
 
-            if(bombArray.includes(i)){
+            if(bombArray.includes(i + 1)){
                 // se il numero è presente gli aggiungo la classe bomb 
                 newSquare.classList.add("bomb");
             }
@@ -90,6 +88,8 @@ buttonElement.addEventListener("click",
 
             // lo inserisco nella griglia 
             gridElement.append(newSquare);
+
+
 
 
             // al click di questa casella aggiungi o rimuovi una classe 
@@ -103,6 +103,11 @@ buttonElement.addEventListener("click",
 
                         // blocco le azioni sulla griglia  
                         gridElement.classList.add("grid-block");
+
+                        // se perdi
+                        resultElement.innerText = "Hai perso, Il tuo punteggio è: " + score;
+
+
                     }else {
                         
                         // altrimenti coloro la casella 
@@ -110,10 +115,15 @@ buttonElement.addEventListener("click",
                         // e le blocco 
                         newSquare.classList.add("square-block")
 
-                        // aggiungo un punto 
+                        // aggiungo un punto e lo scrivo in pagina  
                         score = score + 1;
-                        
-                        document.getElementById("result").innerText = "Il tuo punteggio è: " + score;
+                        resultElement.innerText = "Il tuo punteggio è: " + score;
+
+                        if( score == gridNumber - bombArray.length){
+                            // mostro al giocatore che ha vinto e blocco la griglia 
+                            resultElement.innerText = "Congratulazioni hai vinto";
+                            gridElement.classList.add("grid-block");
+                        }
                         
                     }
 
